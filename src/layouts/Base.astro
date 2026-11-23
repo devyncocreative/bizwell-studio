@@ -34,7 +34,10 @@ const fullTitle = title === site.name ? `${site.name} | ${site.tagline}` : `${ti
   <meta property="og:image" content={og} />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content={og} />
-  <link rel="icon" href="/img/favicon.png" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png" />
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
