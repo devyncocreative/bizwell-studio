@@ -16,7 +16,7 @@ const still = '2022_07_BizWell-Event-Screening-A-Going-Concern-06.22.mp4.00_00_4
     {features.map((f) => (
       <article class="film">
         <a class="film__media" href={`/film/${f.slug}/`} tabindex="-1" aria-hidden="true">
-          {img(`yt_${f.yt}.jpg`) ? <Image src={img(`yt_${f.yt}.jpg`)!} alt="" widths={[500, 900]} sizes="(max-width: 820px) 100vw, 520px" /> : <span class="card__blank"></span>}
+          {img(f.thumb || `yt_${f.yt}.jpg`) ? <Image src={img(f.thumb || `yt_${f.yt}.jpg`)!} alt="" widths={[500, 900]} sizes="(max-width: 820px) 100vw, 520px" /> : <span class="card__blank"></span>}
         </a>
         <div class="film__body">
           <p class="eyebrow">Documentary{f.year && ` · ${f.year}`}</p>

@@ -9,7 +9,7 @@ const { f } = Astro.props;
 const related = f.related.map((s: string) => films.find((x) => x.slug === s)!).filter(Boolean);
 const poster = f.poster && img(f.poster);
 ---
-<Base title={f.title} description={f.logline} ogSrc={img(`yt_${f.yt}.jpg`)}>
+<Base title={f.title} description={f.logline} ogSrc={img(f.thumb || `yt_${f.yt}.jpg`)}>
   <section class="phead" style={f.yt ? 'padding-bottom:6rem' : ''}><div class="wrap">
     <p class="crumb"><a href="/film/">Films</a> /</p>
     <p class="eyebrow">{f.feature ? 'Documentary' : 'Screening event'}{f.year && ` · ${f.year}`}</p>
