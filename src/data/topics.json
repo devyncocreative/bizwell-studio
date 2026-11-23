@@ -1,0 +1,67 @@
+[
+ {
+  "name": "Art",
+  "slug": "art",
+  "count": 3
+ },
+ {
+  "name": "Boating Lifestyle",
+  "slug": "boating-lifestyle",
+  "count": 4
+ },
+ {
+  "name": "Business and Life Coaches",
+  "slug": "business-and-life-coaches",
+  "count": 4
+ },
+ {
+  "name": "Car Dealers",
+  "slug": "car-dealers",
+  "count": 3
+ },
+ {
+  "name": "Family Run Businesses",
+  "slug": "family-run-businesses",
+  "count": 3
+ },
+ {
+  "name": "Fun and Lifestyle",
+  "slug": "fun-and-lifestyle",
+  "count": 3
+ },
+ {
+  "name": "Government and Non-Profit",
+  "slug": "government-and-non-profit",
+  "count": 2
+ },
+ {
+  "name": "Local/Retail",
+  "slug": "local-retail",
+  "count": 3
+ },
+ {
+  "name": "Products",
+  "slug": "products",
+  "count": 3
+ },
+ {
+  "name": "RV Lifestyle",
+  "slug": "rv-lifestyle",
+  "count": 5
+ },
+ {
+  "name": "Small Towns",
+  "slug": "small-towns",
+  "count": 3
+ },
+ {
+  "name": "Trailblazers",
+  "slug": "trailblazers",
+  "count": 3
+ },
+ {
+  "name": "Wellness",
+  "slug": "wellness",
+  "count": 4
+ }
+]

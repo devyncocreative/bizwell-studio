@@ -1,0 +1,96 @@
+---
+import '@fontsource-variable/plus-jakarta-sans';
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+import { Image } from 'astro:assets';
+import { site, topics, img, isLive } from '../lib/site';
+interface Props { title: string; description?: string; ogImage?: string }
+const { title, description = site.description, ogImage = '/img/og.jpg' } = Astro.props;
+const live = isLive(Astro.site);
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const og = new URL(ogImage, Astro.site);
+const path = Astro.url.pathname;
+const active = (href: string) => (href === '/' ? path === '/' : path.startsWith(href) || (href === '/library/' && /^\/(videos|podcasts)\//.test(path)));
+const logo = img('logo-on-teal.png')!;
+const fullTitle = title === site.name ? `${site.name} | ${site.tagline}` : `${title} | ${site.name}`;
+---
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {!live && <meta name="robots" content="noindex, nofollow, noarchive" />}
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={site.name} />
+  <meta property="og:locale" content="en_CA" />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={og} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={og} />
+  <link rel="icon" href="/img/favicon.png" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="hdr">
+    <div class="wrap hdr__in">
+      <a class="hdr__logo" href="/" aria-label="BizWell Studio home"><Image src={logo} alt="BizWell Studio" width=100 height={56} densities={[1, 2]} loading="eager" /></a>
+      <button class="hdr__toggle" type="button" aria-expanded="false" aria-controls="nav"><span class="sr">Menu</span><i></i><i></i><i></i></button>
+      <nav id="nav" class="nav" aria-label="Main">
+        {site.nav.map((n) => <a href={n.href} aria-current={active(n.href) ? 'page' : undefined}>{n.label}</a>)}
+        <a class="btn btn--pink nav__cta" href="/film/a-going-concern/">Watch the trailer</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main"><slot /></main>
+  <footer class="ftr">
+    <div class="wrap ftr__grid">
+      <div>
+        <a href="/" class="ftr__logo"><Image src={logo} alt="BizWell Studio" width=114 height={64} densities={[1, 2]} /></a>
+        <p class="ftr__tag">{site.tagline}. Films, interviews and business stories from Western Canada and beyond.</p>
+        <p class="ftr__h">Follow us</p>
+        <ul class="ftr__social">{site.social.map((s) => <li><a href={s.href} rel="noopener" target="_blank">{s.label}</a></li>)}</ul>
+      </div>
+      <div>
+        <p class="ftr__h">Video topics</p>
+        <ul class="ftr__cols">{topics.map((t) => <li><a href={`/library/?topic=${t.slug}`}>{t.name}</a></li>)}</ul>
+      </div>
+      <div>
+        <p class="ftr__h">Explore</p>
+        <ul>
+          <li><a href="/film/a-going-concern/">A Going Concern</a></li>
+          <li><a href="/film/">All films</a></li>
+          <li><a href="/library/?type=podcast">Interviews</a></li>
+          <li><a href="/library/?type=video">Business stories</a></li>
+          <li><a href="/contact-us/">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="ftr__h">Contact us</p>
+        <address>{site.address.map((l) => <>{l}<br /></>)}</address>
+      </div>
+    </div>
+    <div class="wrap ftr__base">
+      <p>© {new Date().getFullYear()} BizWell Studio</p>
+      <p>Website by <a href="https://co-creative.digital/" rel="noopener">Co-Creative Digital</a></p>
+    </div>
+  </footer>
+  <script is:inline>
+    (function () {
+      var t = document.querySelector('.hdr__toggle'), n = document.getElementById('nav');
+      if (t) t.addEventListener('click', function () { var o = n.classList.toggle('is-open'); t.setAttribute('aria-expanded', o); });
+      document.addEventListener('click', function (e) {
+        var b = e.target.closest('.yt__btn'); if (!b) return;
+        var w = b.parentElement, f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + w.dataset.yt + '?autoplay=1&rel=0';
+        f.title = w.dataset.title; f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
+        w.innerHTML = ''; w.appendChild(f); w.classList.add('is-playing');
+      });
+    })();
+  </script>
+</body>
+</html>

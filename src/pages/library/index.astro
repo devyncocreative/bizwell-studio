@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import Card from '../../components/Card.astro';
+import { library, topics } from '../../lib/site';
+const nP = library.filter((i) => i.kind === 'podcast').length, nV = library.length - nP;
+---
+<Base title="Library" description="Watch BizWell Studio interviews with entrepreneurs and wellness experts, and business stories from communities across British Columbia and Alberta.">
+  <section class="phead"><div class="wrap">
+    <p class="eyebrow">Library</p>
+    <h1>Watch the best business minds speak candidly</h1>
+    <p>{nP} interviews and {nV} business stories from British Columbia, Alberta and beyond. Filter by type or topic, or search for a name or a town.</p>
+  </div></section>
+  <section class="sec sec--tight"><div class="wrap">
+    <div class="filters">
+      <div class="filters__row">
+        <div class="chips" role="group" aria-label="Type">
+          <button class="chip" data-type="" aria-pressed="true">All</button>
+          <button class="chip" data-type="podcast" aria-pressed="false">Interviews</button>
+          <button class="chip" data-type="video" aria-pressed="false">Business stories</button>
+        </div>
+        <input class="search" type="search" placeholder="Search by name, town or topic" aria-label="Search the library" />
+      </div>
+      <div class="chips" role="group" aria-label="Topic">
+        <button class="chip" data-topic="" aria-pressed="true">All topics</button>
+        {topics.map((t) => <button class="chip" data-topic={t.slug} aria-pressed="false">{t.name}</button>)}
+      </div>
+      <p class="count" aria-live="polite"></p>
+    </div>
+    <div class="grid" id="lib">{library.map((i) => <Card item={i} />)}</div>
+    <p class="note" id="none" hidden>Nothing matches those filters yet. Try another topic or clear the search.</p>
+  </div></section>
+  <script is:inline>
+    (function () {
+      var q = new URLSearchParams(location.search), st = { type: q.get('type') || '', topic: q.get('topic') || '', s: '' };
+      var cards = [].slice.call(document.querySelectorAll('#lib .card')), count = document.querySelector('.count'), none = document.getElementById('none');
+      function draw() {
+        var n = 0;
+        cards.forEach(function (c) {
+          var ok = (!st.type || c.dataset.kind === st.type) && (!st.topic || (' ' + c.dataset.topics + ' ').indexOf(' ' + st.topic + ' ') > -1) && (!st.s || c.dataset.text.indexOf(st.s) > -1);
+          c.hidden = !ok; if (ok) n++;
+        });
+        document.querySelectorAll('[data-type]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.type === st.type); });
+        document.querySelectorAll('[data-topic]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.topic === st.topic); });
+        count.textContent = n + (n === 1 ? ' video' : ' videos'); none.hidden = n > 0;
+        var p = new URLSearchParams(); if (st.type) p.set('type', st.type); if (st.topic) p.set('topic', st.topic);
+        history.replaceState(null, '', location.pathname + (p.toString() ? '?' + p : ''));
+      }
+      document.querySelectorAll('[data-type]').forEach(function (b) { b.addEventListener('click', function () { st.type = b.dataset.type; if (st.type === 'podcast') st.topic = ''; draw(); }); });
+      document.querySelectorAll('[data-topic]').forEach(function (b) { b.addEventListener('click', function () { st.topic = b.dataset.topic; if (st.topic && st.type === 'podcast') st.type = ''; draw(); }); });
+      document.querySelector('.search').addEventListener('input', function (e) { st.s = e.target.value.trim().toLowerCase(); draw(); });
+      draw();
+    })();
+  </script>
+</Base>

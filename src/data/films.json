@@ -1,0 +1,21 @@
+[
+  { "slug": "a-going-concern", "year": "2021", "subtitle": "The life of Gerry Levasseur",
+    "logline": "The story of an Alberta pioneer who, among other ventures, helped build a thriving resort town in the Canadian Rockies.",
+    "poster": "2021_12_A-Going-Concern-Poster-v3_3-2-683x1024.jpg",
+    "quote": { "text": "When everybody takes a right, I like to take a left.", "by": "Gerry Levasseur" },
+    "related": ["a-going-concern-premiere-event-gerry-levasseur-edmonton-shaw-theatre"], "feature": true },
+  { "slug": "your-second-fifty", "year": "2016", "subtitle": "Rising above the fears of aging",
+    "logline": "A documentary that invites people to look at aging in a different way, across the physical, mental, financial, emotional and spiritual sides of life.",
+    "quote": { "text": "The highest form of communication in biology, is not physical but vibrational information.", "by": "Bruce Lipton PhD" },
+    "related": [], "feature": true },
+  { "slug": "on-a-scale-of-1-to-10", "year": "2018", "subtitle": "The silent epidemic",
+    "logline": "A new light on chronic pain, and on the therapies and approaches that help people regain their quality of life.",
+    "quote": { "text": "The grass is greener where we feed it.", "by": "Dr. Donny Epstein" },
+    "related": [], "feature": true },
+  { "slug": "the-music-of-magma", "year": "", "subtitle": "To life, death and beyond",
+    "logline": "A passionate look at Christian Vander and Magma, a band that has moved audiences around the world for more than five decades.",
+    "related": [], "feature": true },
+  { "slug": "a-going-concern-premiere-event-gerry-levasseur-edmonton-shaw-theatre", "year": "2022", "subtitle": "Screening event",
+    "logline": "The Edmonton screening of A Going Concern, held with the Levasseur Community Trust.",
+    "related": ["a-going-concern"], "feature": false }
+]

@@ -1,0 +1,173 @@
+---
+import Base from '../layouts/Base.astro';
+import YT from '../components/YT.astro';
+import Card from '../components/Card.astro';
+import { Image } from 'astro:assets';
+import { site, img, films, library, topics } from '../lib/site';
+const agc = films.find((f) => f.slug === 'a-going-concern')!;
+const interviews = library.filter((i) => i.kind === 'podcast' && i.yt).slice(0, 6);
+const stories = library.filter((i) => i.kind === 'video' && i.yt && i.img).slice(0, 3);
+const quotes = films.filter((f) => f.quote);
+const hero = ['2021_11_shutterstock_2029016132-1024x683.jpg', '2021_11_shutterstock_1936517614-1024x683.jpg', '2021_11_shutterstock_2049110456-1024x683.jpg', '2021_11_shutterstock_574231111-1024x683.jpg'];
+const team = [
+  ['Laurent Goldstein', 'Networking & Sales', '2022_06_2_03.png'],
+  ['Jennifer Unruh', 'Digital Strategy', '2022_06_1.png'],
+  ['Devyn Brugge', 'Digital Marketing', '2022_06_fdb_03-150x150.png'],
+  ['Lisa Levasseur', 'Leadership', '2022_06_3_03.png'],
+];
+const experts = [
+  ['Brittany Long', 'Email Marketing Specialist', '2022_06_Brittany-Long_03-150x150.jpg'],
+  ['Stefan Zavalin', 'Move More, Sit Less Advocate', '2022_06_Stefan-Zavalin_03-150x150.jpg'],
+  ['David Druizer', 'Mind, Body, Freedom Advocate', '2022_06_David-Druizer_03-150x150.jpg'],
+  ['Trevor Turnbull', 'Amplify Impact Coach', '2022_06_Trevor-Turnbull_03-150x150.jpg'],
+  ['Dr. Nicholas Jensen', 'Performance Biohacking Specialist', '2022_06_Nicholas-Jensen_03-150x150.jpg'],
+  ['Dr. Donny Epstein', 'EpiEnergetic Innovator', '2022_06_Donald-Epstein_03-150x150.jpg'],
+  ['Dr. Sonya Jensen', "Women's Health Specialist", '2022_06_Dr.-Sonya-Jensen_03-150x150.jpg'],
+  ['Nicolette Richer', 'Regenerative Medicine Educator', '2022_06_Nicolette-Richer_03-150x150.jpg'],
+];
+---
+<Base title={site.name}>
+  <section class="hero">
+    <div class="wrap">
+      <h1>The Ultimate Business Club For Entrepreneurs With Big Dreams</h1>
+      <p class="lede">Our business is an extension of who we are. By bringing wellness into our physical, mental, emotional and spiritual aspects of our lives, our businesses will thrive.</p>
+      <div class="btns"><a class="btn btn--pink" href="/library/">Browse the library</a><a class="btn btn--line" href="/film/">See the films</a></div>
+      <div class="collage">
+        {hero.map((h, i) => <Image src={img(h)!} alt="" widths={[300, 600]} sizes="(max-width: 640px) 50vw, 280px" loading={i < 2 ? 'eager' : 'lazy'} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap split split--top">
+      <div>
+        <h2>Let Us Know If This Sounds Familiar:</h2>
+        <p><strong class="pinkt">You're a successful business owner,</strong><br /><em>but why do you feel so close to burning out at times?</em></p>
+        <p>You know you could be doing things better, but at the end of the day you just don't have the energy to figure it all out.</p>
+      </div>
+      <div>
+        <p class="lede">At times, you may feel like:</p>
+        <ol class="nums">
+          <li><b>1</b>You need to incorporate more wellness and mindfulness in your life.</li>
+          <li><b>2</b>You're running out of energy.</li>
+          <li><b>3</b>You may feel lonely and isolated as an entrepreneur.</li>
+          <li><b>4</b>You are losing motivation.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--split">
+    <Image src={img('2021_11_shutterstock_2020024496-1024x685.jpg')!} alt="" widths={[600, 1024]} sizes="(max-width: 820px) 100vw, 50vw" />
+    <div>
+      <p class="lede">We get it.</p>
+      <p>Successful business people often feel that way. And the fact that there have been fewer and fewer trade shows and conferences has created a greater sense of isolation than ever before.</p>
+      <p><strong>This is why we created BizWell Studio: to create a community of like-minded entrepreneurs who can learn and support each other.</strong></p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap split">
+      <div class="duo">
+        <Image src={img('2021_11_2850209912979612834.jpeg')!} alt="" widths={[400, 700]} sizes="(max-width: 820px) 50vw, 280px" />
+        <Image src={img('2021_11_shutterstock_2029586453-1024x608.jpg')!} alt="" widths={[400, 700]} sizes="(max-width: 820px) 50vw, 280px" />
+      </div>
+      <div>
+        <h2>What is <span class="blue">BizWell</span>? It's a streaming home for business stories</h2>
+        <p>BizWell is an online platform where business owners can <strong>access inspiring content, classes, and community-driven support.</strong></p>
+        <p>The three founders of BizWell Studio, Lisa, Laurent and Jennifer, have done over 400m in business in Canada, United States, and Europe.</p>
+        <p>BizWell Studio travels around <strong>Alberta and British Columbia communities</strong> to meet amazing businesses. No matter where you live, we inspire pioneering business owners to get energized, excited, and expand their horizons.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec dark" id="a-going-concern">
+    <div class="wrap">
+      <div class="feature">
+        <a class="feature__poster" href="/film/a-going-concern/"><Image src={img(agc.poster)!} alt="A Going Concern film poster: The Life of Gerry Levasseur" widths={[300, 600]} sizes="300px" /></a>
+        <div>
+          <p class="eyebrow">Featured film</p>
+          <h2>A Going Concern</h2>
+          <p class="lede" style="color:#fff">{agc.logline}</p>
+          <p>A motivational film about a successful entrepreneur who built a legacy through perseverance, thinking outside of the box, hiring and retaining excellent employees. A man with no ego, just a love to build businesses.</p>
+          <div class="btns"><a class="btn btn--white" href="/film/a-going-concern/">About the film</a></div>
+        </div>
+      </div>
+      <div class="trailer narrow">
+        <YT id={agc.yt} title="A Going Concern trailer" label="Play trailer" poster={img(`yt_${agc.yt}.jpg`)} />
+        <p class="trailer__cap center">Official trailer for A Going Concern.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec band">
+    <div class="wrap">
+      <div class="sechead"><div><p class="eyebrow">From our films</p><h2>Words that stay with you</h2></div><a class="btn btn--line" href="/film/">All films</a></div>
+      <div class="quotes">
+        {quotes.map((f) => (
+          <blockquote class="quote">
+            <p>“{f.quote!.text}”</p>
+            <footer><cite>{f.quote!.by}</cite><a href={`/film/${f.slug}/`}>{f.title}</a>{f.year && ` (${f.year})`}</footer>
+          </blockquote>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sechead"><div><p class="eyebrow">Inspiring leaders share their secrets to success</p><h2>Watch, be inspired, and move rocky mountains</h2></div><a class="btn btn--line" href="/library/?type=podcast">All interviews</a></div>
+      <div class="grid grid--3">{interviews.map((i) => <Card item={i} />)}</div>
+    </div>
+  </section>
+
+  <section class="sec dark">
+    <div class="wrap">
+      <div class="sechead"><div><p class="eyebrow">Business stories</p><h2>Meet the businesses behind our communities</h2></div><a class="btn btn--white" href="/library/?type=video">All business stories</a></div>
+      <div class="grid grid--3" style="margin-bottom:2.5rem">{stories.map((i) => <Card item={i} />)}</div>
+      <p class="ftr__h">Browse by topic</p>
+      <ul class="chips">{topics.map((t) => <li><a class="chip" href={`/library/?topic=${t.slug}`}>{t.name}</a></li>)}</ul>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap split split--top">
+      <div>
+        <p class="eyebrow">The co-founders</p>
+        <h2>Laurent, Jennifer &amp; Lisa</h2>
+        <p>Laurent and Jennifer have attended and hosted hundreds of wellness conferences and seminars over the last 25 years. Laurent has shared the stage with countless experts and mentors in that space.</p>
+        <p>Combining this experience with Lisa's business and entrepreneurship background was the foundation behind the creation of BizWell Studio.</p>
+      </div>
+      <div>
+        <p class="lede">In a volatile world, 5-year plans don't work anymore. What we need now are businesses that operate with purpose.</p>
+        <p class="lede">People don't need more information, they need inspiration!</p>
+        <p class="lede">When you elevate everyone to be leaders, you elevate the business!</p>
+        <p class="lede">And, when you expand your network, you expand your net-worth!</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec dark">
+    <div class="wrap">
+      <h2>Resident Experts</h2>
+      <p class="rule">BizWell Team</p>
+      <ul class="people" style="margin-bottom:3.5rem">{team.map(([n, r, f]) => <li><Image src={img(f)!} alt="" width={150} height={150} densities={[1, 2]} /><strong>{n}</strong><span>{r}</span></li>)}</ul>
+      <p class="rule">Featured Experts</p>
+      <ul class="people">{experts.map(([n, r, f]) => <li><Image src={img(f)!} alt="" width={150} height={150} /><strong>{n}</strong><span>{r}</span></li>)}</ul>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">How to do well in business</p>
+        <h2>BizWell has something for anybody who wants to do business well.</h2>
+        <p>Your business is an extension and a reflection of who you really are on the inside.</p>
+        <p>Our thoughts, words and emotions are made up of energy. When you are motivated and confident, you create more positive energy.</p>
+        <p class="lede">Life is short. So do what you love. And love what you do.</p>
+        <div class="btns"><a class="btn btn--pink" href="/library/">Start watching</a><a class="btn btn--line" href="/contact-us/">Get in touch</a></div>
+      </div>
+      <Image src={img('2021_11_shutterstock_574231111-1024x683.jpg')!} alt="" widths={[600, 1024]} sizes="(max-width: 820px) 100vw, 560px" style="border-radius:16px" />
+    </div>
+  </section>
+</Base>

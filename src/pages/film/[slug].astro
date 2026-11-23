@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import YT from '../../components/YT.astro';
+import { Image } from 'astro:assets';
+import { films, img } from '../../lib/site';
+export function getStaticPaths() { return films.map((f) => ({ params: { slug: f.slug }, props: { f } })); }
+const { f } = Astro.props;
+const related = f.related.map((s: string) => films.find((x) => x.slug === s)!).filter(Boolean);
+const poster = f.poster && img(f.poster);
+---
+<Base title={f.title} description={f.logline}>
+  <section class="phead" style={f.yt ? 'padding-bottom:6rem' : ''}><div class="wrap">
+    <p class="crumb"><a href="/film/">Films</a> /</p>
+    <p class="eyebrow">{f.feature ? 'Documentary' : 'Screening event'}{f.year && ` · ${f.year}`}</p>
+    <h1>{f.title}</h1>
+    <p>{f.subtitle}</p>
+  </div></section>
+  {f.yt && <div class="narrow overlap"><YT id={f.yt} title={`${f.title} ${f.feature ? 'trailer' : 'video'}`} label={f.feature ? 'Play trailer' : 'Play video'} poster={img(`yt_${f.yt}.jpg`)} /></div>}
+  <section class="sec--tight sec"><div class="wrap fgrid">
+    <div class="prose">
+      {f.feature && f.yt && <p class="eyebrow">About the film</p>}
+      <Fragment set:html={f.html} />
+      {f.quote && <blockquote class="quote" style="margin-top:2rem"><p>“{f.quote.text}”</p><footer><cite>{f.quote.by}</cite></footer></blockquote>}
+      {related.length > 0 && <>
+        <h2>Related</h2>
+        <ul>{related.map((r: any) => <li><a href={`/film/${r.slug}/`}>{r.title}</a></li>)}</ul>
+      </>}
+      <p style="margin-top:2rem"><a class="btn btn--line" href="/film/">All films</a></p>
+    </div>
+    {poster && <aside><Image src={poster} alt={`${f.title} film poster`} widths={[260, 520]} sizes="260px" /></aside>}
+  </div></section>
+</Base>

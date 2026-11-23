@@ -1,0 +1,6 @@
+---
+import ItemPage from '../../components/ItemPage.astro';
+import { library } from '../../lib/site';
+export function getStaticPaths() { return library.filter((i) => i.kind === 'podcast').map((item) => ({ params: { slug: item.slug }, props: { item } })); }
+---
+<ItemPage item={Astro.props.item} />

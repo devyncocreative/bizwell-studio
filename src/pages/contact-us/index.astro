@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../lib/site';
+---
+<Base title="Contact" description="Get in touch with BizWell Studio in Stony Plain, Alberta, or follow along on social media.">
+  <section class="phead"><div class="wrap">
+    <p class="eyebrow">Contact BizWell Studio</p>
+    <h1>Get in touch with us</h1>
+    <p>We'd love to hear from you. Drop us a line and let us know how we can be of service.</p>
+  </div></section>
+  <section class="sec"><div class="wrap cgrid">
+    <div class="ccard">
+      <p class="eyebrow">Send us some mail</p>
+      <h2 style="font-size:1.4rem">By post</h2>
+      <address>{site.address.map((l) => <>{l}<br /></>)}</address>
+    </div>
+    <div class="ccard">
+      <p class="eyebrow">Socials</p>
+      <h2 style="font-size:1.4rem">Message us</h2>
+      <ul>{site.social.map((s) => <li><a href={s.href} rel="noopener" target="_blank">{s.label}</a></li>)}</ul>
+    </div>
+    <div class="ccard">
+      <p class="eyebrow">Start here</p>
+      <h2 style="font-size:1.4rem">Watch first</h2>
+      <p>See what we make before you write.</p>
+      <div class="btns"><a class="btn btn--pink" href="/film/a-going-concern/">A Going Concern</a><a class="btn btn--line" href="/library/">Library</a></div>
+    </div>
+  </div></section>
+  <section class="sec band"><div class="narrow">
+    <h2>We'd love to engage with you</h2>
+    <p>We believe that engagement is essential to success. Whether you're engaging with customers, employees, or your own personal goals, putting your heart into it is what drives results.</p>
+    <p>When we engage with the world around us, we open up new opportunities for understanding and connection. At its best, engagement is a two-way street, leading to reciprocal learning and growth.</p>
+  </div></section>
+</Base>
