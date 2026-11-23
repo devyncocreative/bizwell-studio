@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import { img, itemHref, kindLabel, slugify } from '../lib/site';
 const { item } = Astro.props;
-const pic = img(item.img);
+const pic = img(item.img) || (item.yt ? img(`yt_${item.yt}.jpg`) : undefined);
 ---
 <article class="card" data-kind={item.kind} data-topics={item.topics.map(slugify).join(' ')} data-text={(item.title + ' ' + item.places.join(' ') + ' ' + item.topics.join(' ')).toLowerCase()}>
   <a class="card__media" href={itemHref(item)} tabindex="-1" aria-hidden="true">

@@ -1,20 +1,23 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Card from '../../components/Card.astro';
-import { library, topics } from '../../lib/site';
+import { library, topics, films } from '../../lib/site';
 const nP = library.filter((i) => i.kind === 'podcast').length, nV = library.length - nP;
+const filmCards = films.map((f) => ({ ...f, kind: 'film', excerpt: f.logline, topics: [], places: [] }));
+const all = [...filmCards.filter((f) => f.feature), ...library, ...filmCards.filter((f) => !f.feature)];
 ---
 <Base title="Library" description="Watch BizWell Studio interviews with entrepreneurs and wellness experts, and business stories from communities across British Columbia and Alberta.">
   <section class="phead"><div class="wrap">
     <p class="eyebrow">Library</p>
     <h1>Watch the best business minds speak candidly</h1>
-    <p>{nP} interviews and {nV} business stories from British Columbia, Alberta and beyond. Filter by type or topic, or search for a name or a town.</p>
+    <p>{filmCards.filter((f) => f.feature).length} films, {nP} interviews and {nV} business stories from British Columbia, Alberta and beyond. Filter by type or topic, or search for a name or a town.</p>
   </div></section>
   <section class="sec sec--tight"><div class="wrap">
     <div class="filters">
       <div class="filters__row">
         <div class="chips" role="group" aria-label="Type">
           <button class="chip" data-type="" aria-pressed="true">All</button>
+          <button class="chip" data-type="film" aria-pressed="false">Films</button>
           <button class="chip" data-type="podcast" aria-pressed="false">Interviews</button>
           <button class="chip" data-type="video" aria-pressed="false">Business stories</button>
         </div>
@@ -27,7 +30,7 @@ const nP = library.filter((i) => i.kind === 'podcast').length, nV = library.leng
       <p class="count" aria-live="polite"></p>
     </div>
     <h2 class="sr">All videos</h2>
-    <div class="grid" id="lib">{library.map((i) => <Card item={i} />)}</div>
+    <div class="grid" id="lib">{all.map((i) => <Card item={i} />)}</div>
     <p class="note" id="none" hidden>Nothing matches those filters yet. Try another topic or clear the search.</p>
   </div></section>
   <script is:inline>
@@ -46,8 +49,8 @@ const nP = library.filter((i) => i.kind === 'podcast').length, nV = library.leng
         var p = new URLSearchParams(); if (st.type) p.set('type', st.type); if (st.topic) p.set('topic', st.topic);
         history.replaceState(null, '', location.pathname + (p.toString() ? '?' + p : ''));
       }
-      document.querySelectorAll('[data-type]').forEach(function (b) { b.addEventListener('click', function () { st.type = b.dataset.type; if (st.type === 'podcast') st.topic = ''; draw(); }); });
-      document.querySelectorAll('[data-topic]').forEach(function (b) { b.addEventListener('click', function () { st.topic = b.dataset.topic; if (st.topic && st.type === 'podcast') st.type = ''; draw(); }); });
+      document.querySelectorAll('[data-type]').forEach(function (b) { b.addEventListener('click', function () { st.type = b.dataset.type; if (st.type === 'podcast' || st.type === 'film') st.topic = ''; draw(); }); });
+      document.querySelectorAll('[data-topic]').forEach(function (b) { b.addEventListener('click', function () { st.topic = b.dataset.topic; if (st.topic && (st.type === 'podcast' || st.type === 'film')) st.type = ''; draw(); }); });
       document.querySelector('.search').value = st.s;
       document.querySelector('.search').addEventListener('input', function (e) { st.s = e.target.value.trim().toLowerCase(); draw(); });
       draw();
