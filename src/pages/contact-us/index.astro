@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { site } from '../../lib/site';
+import Social from '../../components/Social.astro';
 ---
 <Base title="Contact" description="Get in touch with BizWell Studio in Stony Plain, Alberta, or follow along on social media.">
   <section class="phead"><div class="wrap">
@@ -17,7 +18,8 @@ import { site } from '../../lib/site';
     <div class="ccard">
       <p class="eyebrow">Socials</p>
       <h2 style="font-size:1.4rem">Message us</h2>
-      <ul>{site.social.map((s) => <li><a href={s.href} rel="noopener" target="_blank">{s.label}</a></li>)}</ul>
+      <p>YouTube and TikTok are where we post most.</p>
+      <Social light />
     </div>
     <div class="ccard">
       <p class="eyebrow">Start here</p>

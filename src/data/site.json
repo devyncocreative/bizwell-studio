@@ -3,18 +3,63 @@
   "liveHost": "bizwellstudio.com",
   "tagline": "Where business meets wellness",
   "description": "BizWell Studio shares films, interviews and business stories from entrepreneurs across Western Canada, including the documentary A Going Concern.",
-  "address": ["BizWell Studio", "115-3003 43 Ave", "Stony Plain, Alberta, T7Z 0H4"],
+  "address": [
+    "BizWell Studio",
+    "115-3003 43 Ave",
+    "Stony Plain, Alberta, T7Z 0H4"
+  ],
   "nav": [
-    { "label": "Home", "href": "/" },
-    { "label": "Films", "href": "/film/" },
-    { "label": "Library", "href": "/library/" },
-    { "label": "Contact", "href": "/contact-us/" }
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Films",
+      "href": "/film/"
+    },
+    {
+      "label": "Library",
+      "href": "/library/"
+    },
+    {
+      "label": "Hire Us",
+      "href": "/work-with-us/"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact-us/"
+    }
   ],
   "social": [
-    { "label": "Facebook", "href": "https://www.facebook.com/BizWellStudio" },
-    { "label": "Instagram", "href": "https://www.instagram.com/bizwellstudio/" },
-    { "label": "TikTok", "href": "https://www.tiktok.com/@bizwellstudio" },
-    { "label": "LinkedIn", "href": "https://www.linkedin.com/company/bizwellstudio/" },
-    { "label": "YouTube", "href": "https://www.youtube.com/channel/UCx_ztvHDalYSqof6WgIfnLw" }
+    {
+      "label": "YouTube",
+      "href": "https://www.youtube.com/channel/UCx_ztvHDalYSqof6WgIfnLw",
+      "icon": "siYoutube",
+      "primary": true
+    },
+    {
+      "label": "TikTok",
+      "href": "https://www.tiktok.com/@bizwellstudio",
+      "icon": "siTiktok",
+      "primary": true
+    },
+    {
+      "label": "Instagram",
+      "href": "https://www.instagram.com/bizwellstudio/",
+      "icon": "siInstagram",
+      "primary": false
+    },
+    {
+      "label": "Facebook",
+      "href": "https://www.facebook.com/BizWellStudio",
+      "icon": "siFacebook",
+      "primary": false
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/company/bizwellstudio/",
+      "icon": "siLinkedin",
+      "primary": false
+    }
   ]
 }

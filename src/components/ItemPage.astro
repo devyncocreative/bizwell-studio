@@ -2,13 +2,14 @@
 import Base from '../layouts/Base.astro';
 import YT from './YT.astro';
 import Card from './Card.astro';
+import Share from './Share.astro';
 import { Image } from 'astro:assets';
 import { library, img, fmtDate, kindLabel, slugify } from '../lib/site';
 const { item } = Astro.props;
 const pic = img(item.img);
 const related = library.filter((i) => i.slug !== item.slug && (item.kind === 'podcast' ? i.kind === 'podcast' : i.topics.some((t: string) => item.topics.includes(t)))).slice(0, 3);
 ---
-<Base title={item.title} description={item.excerpt}>
+<Base title={item.title} description={item.excerpt} ogSrc={pic}>
   <section class="phead" style="padding-bottom:6rem"><div class="wrap">
     <p class="crumb"><a href="/library/">Library</a> / <a href={`/library/?type=${item.kind}`}>{item.kind === 'podcast' ? 'Interviews' : 'Business stories'}</a> /</p>
     <p class="eyebrow">{kindLabel(item.kind)}</p>
@@ -24,6 +25,7 @@ const related = library.filter((i) => i.slug !== item.slug && (item.kind === 'po
       {item.topics.map((t: string) => <li><a href={`/library/?topic=${slugify(t)}`}>{t}</a></li>)}
       {item.places.map((p: string) => <li>{p}</li>)}
     </ul>
+    <Share title={item.title} />
     {!item.yt && <p class="note">The video for this story isn't available right now.</p>}
     <Fragment set:html={item.html} />
   </div></section>

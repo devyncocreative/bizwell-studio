@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../lib/site';
+---
+<Base title="Privacy" description="How the BizWell Studio website handles your information.">
+  <section class="phead"><div class="wrap"><p class="eyebrow">Privacy</p><h1>Privacy on this website</h1><p>Last updated November 2026.</p></div></section>
+  <section class="sec"><div class="narrow prose">
+    <h2>What this website collects</h2>
+    <p>This website has no accounts, memberships, forms or checkout. We do not ask for your name, email address or payment details here, and the site does not set advertising or analytics cookies.</p>
+    <h2>Videos</h2>
+    <p>Our films, interviews and business stories are hosted on YouTube. A video only loads from YouTube after you press play. From that point YouTube (Google) may collect information about your viewing under its own privacy policy.</p>
+    <h2>Hosting</h2>
+    <p>Like most websites, our hosting and network providers keep standard server logs, such as IP address, browser type and the pages requested, to keep the site secure and running.</p>
+    <h2>Links to other sites</h2>
+    <p>We link to our social media pages and to the businesses we feature. Those sites have their own privacy practices.</p>
+    <h2>Former members</h2>
+    <p>Earlier versions of this website offered memberships and courses. If you had an account and have a question about your information, write to us at the address below.</p>
+    <h2>Contact</h2>
+    <address>{site.address.map((l) => <>{l}<br /></>)}</address>
+  </div></section>
+</Base>

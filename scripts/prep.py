@@ -31,11 +31,14 @@ def item(r,kind):
 lib=[item(r,'podcast') for r in d['podcasts']]+[item(r,'video') for r in d['videos']]
 lib.sort(key=lambda x:x['date'],reverse=True)
 films=[item(r,'film') for r in d['film']]
+blog=[item(r,'post') for r in d['posts']]
+json.dump(blog,open(OUT+'/src/data/blog.json','w'),indent=1,ensure_ascii=False)
+json.dump(sorted(t['slug'] for t in d['place']),open(OUT+'/src/data/places.json','w'))
 json.dump(lib,open(OUT+'/src/data/library.json','w'),indent=1,ensure_ascii=False)
 json.dump(films,open(OUT+'/src/data/films_raw.json','w'),indent=1,ensure_ascii=False)
 topics=[dict(name=t['name'],slug=t['slug'],count=t['count']) for t in d['business-topic']]
 json.dump(topics,open(OUT+'/src/data/topics.json','w'),indent=1)
-used={x['img'] for x in lib+films if x['img']}
+used={x['img'] for x in lib+films+blog if x['img']}
 for f in os.listdir(H+'/img'):
     if f in used or re.search(r'Poster|Logo|logo|shutterstock|entrepreneur|2022_06_(1|2_03|3_03)\.png|_03-150x150|Sentinel_03|2850209|Terracana-Photos-14|draft-computer|Inn-Hotels|Sales-Method|Social-Share|Still00',f):
         shutil.copy(H+'/img/'+f,OUT+'/src/assets/img/'+f)

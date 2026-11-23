@@ -1,0 +1,17 @@
+---
+import * as icons from 'simple-icons';
+import { site } from '../lib/site';
+const { light = false } = Astro.props;
+const path = (k: string) => (icons as any)[k].path;
+const verb: Record<string, string> = { YouTube: 'Watch on YouTube', TikTok: 'Follow on TikTok' };
+---
+<ul class:list={['social', { 'social--light': light }]}>
+  {site.social.map((s: any) => (
+    <li>
+      <a class:list={['social__a', { 'social__a--main': s.primary }]} href={s.href} rel="noopener" target="_blank" aria-label={`BizWell Studio on ${s.label}`}>
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d={path(s.icon)} /></svg>
+        {s.primary && <span>{verb[s.label]}</span>}
+      </a>
+    </li>
+  ))}
+</ul>

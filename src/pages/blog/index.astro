@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import Card from '../../components/Card.astro';
+import { blog } from '../../lib/site';
+---
+<Base title="Blog" description="Articles from BizWell Studio on small towns, networking, wellness and doing business well.">
+  <section class="phead"><div class="wrap">
+    <p class="eyebrow">Blog</p>
+    <h1>Stories and ideas from BizWell Studio</h1>
+    <p>Notes on small towns, networking, wellness and doing business well.</p>
+  </div></section>
+  <section class="sec"><div class="wrap"><div class="grid grid--3">{blog.map((i) => <Card item={i} />)}</div></div></section>
+</Base>

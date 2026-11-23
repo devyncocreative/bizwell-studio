@@ -31,7 +31,7 @@ const nP = library.filter((i) => i.kind === 'podcast').length, nV = library.leng
   </div></section>
   <script is:inline>
     (function () {
-      var q = new URLSearchParams(location.search), st = { type: q.get('type') || '', topic: q.get('topic') || '', s: '' };
+      var q = new URLSearchParams(location.search), st = { type: q.get('type') || '', topic: q.get('topic') || '', s: (q.get('q') || '').toLowerCase() };
       var cards = [].slice.call(document.querySelectorAll('#lib .card')), count = document.querySelector('.count'), none = document.getElementById('none');
       function draw() {
         var n = 0;
@@ -47,6 +47,7 @@ const nP = library.filter((i) => i.kind === 'podcast').length, nV = library.leng
       }
       document.querySelectorAll('[data-type]').forEach(function (b) { b.addEventListener('click', function () { st.type = b.dataset.type; if (st.type === 'podcast') st.topic = ''; draw(); }); });
       document.querySelectorAll('[data-topic]').forEach(function (b) { b.addEventListener('click', function () { st.topic = b.dataset.topic; if (st.topic && st.type === 'podcast') st.type = ''; draw(); }); });
+      document.querySelector('.search').value = st.s;
       document.querySelector('.search').addEventListener('input', function (e) { st.s = e.target.value.trim().toLowerCase(); draw(); });
       draw();
     })();
