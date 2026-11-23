@@ -16,7 +16,7 @@ const related = library.filter((i) => i.slug !== item.slug && (item.kind === 'po
     <h1>{item.title}</h1>
   </div></section>
   <div class="narrow overlap">
-    {item.yt ? <YT id={item.yt} title={item.title} poster={pic} />
+    {item.yt ? <YT id={item.yt} title={item.title} poster={pic} eager />
       : pic ? <div class="yt"><Image src={pic} alt="" widths={[640, 1024]} sizes="(max-width: 900px) 100vw, 820px" /></div> : null}
   </div>
   <section class="sec sec--tight"><div class="narrow prose">

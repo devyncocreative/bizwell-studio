@@ -16,7 +16,7 @@ const poster = f.poster && img(f.poster);
     <h1>{f.title}</h1>
     <p>{f.subtitle}</p>
   </div></section>
-  {f.yt && <div class="narrow overlap"><YT id={f.yt} title={`${f.title} ${f.feature ? 'trailer' : 'video'}`} label={f.feature ? 'Play trailer' : 'Play video'} poster={img(`yt_${f.yt}.jpg`)} /></div>}
+  {f.yt && <div class="narrow overlap"><YT id={f.yt} title={`${f.title} ${f.feature ? 'trailer' : 'video'}`} label={f.feature ? 'Play trailer' : 'Play video'} poster={img(`yt_${f.yt}.jpg`)} eager /></div>}
   <section class="sec--tight sec"><div class="wrap fgrid">
     <div class="prose">
       <Share title={f.title} />

@@ -26,6 +26,7 @@ const nP = library.filter((i) => i.kind === 'podcast').length, nV = library.leng
       </div>
       <p class="count" aria-live="polite"></p>
     </div>
+    <h2 class="sr">All videos</h2>
     <div class="grid" id="lib">{library.map((i) => <Card item={i} />)}</div>
     <p class="note" id="none" hidden>Nothing matches those filters yet. Try another topic or clear the search.</p>
   </div></section>

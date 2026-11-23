@@ -19,7 +19,7 @@ p{margin:0 0 1em} a{color:var(--blue)} a:hover{color:var(--pink-deep)}
 .center{text-align:center}
 .sr,.skip:not(:focus){position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip:focus{position:fixed;top:8px;left:8px;background:#fff;padding:.6rem 1rem;z-index:99;border-radius:8px}
-.eyebrow{font-family:var(--text);font-size:.74rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--pink-deep);margin:0 0 .6rem}
+.eyebrow{font-family:var(--text);font-size:.74rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#b53fa3;margin:0 0 .6rem}
 .lede{font-family:var(--head);font-size:clamp(1.05rem,1.6vw,1.25rem);color:var(--ink);line-height:1.5;font-weight:500}
 .blue{color:var(--blue)} .pinkt{color:var(--pink)}
 .btn{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--text);font-weight:600;font-size:.92rem;padding:.8rem 1.5rem;border-radius:999px;text-decoration:none;border:2px solid transparent;transition:transform .15s,background .15s,color .15s;cursor:pointer}
@@ -217,3 +217,5 @@ p{margin:0 0 1em} a{color:var(--blue)} a:hover{color:var(--pink-deep)}
 .share__a:hover{background:var(--teal);border-color:var(--teal);color:#fff}
 .share__done:empty{display:none}
 .meta{margin-bottom:1.2rem}
+
+.dark .card .eyebrow{color:#b53fa3}
