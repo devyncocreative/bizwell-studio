@@ -47,7 +47,7 @@ const fullTitle = title === site.name ? `${site.name} | ${site.tagline}` : `${ti
       <button class="hdr__toggle" type="button" aria-expanded="false" aria-controls="nav"><span class="sr">Menu</span><i></i><i></i><i></i></button>
       <nav id="nav" class="nav" aria-label="Main">
         {site.nav.map((n) => <a href={n.href} aria-current={active(n.href) ? 'page' : undefined}>{n.label}</a>)}
-        <a class="btn btn--pink nav__cta" href="/film/a-going-concern/">Watch the trailer</a>
+        <a class="btn btn--pink nav__cta" href="/library/">Browse the library</a>
       </nav>
     </div>
   </header>
@@ -87,6 +87,31 @@ const fullTitle = title === site.name ? `${site.name} | ${site.tagline}` : `${ti
       <p>Website by <a href="https://co-creative.digital/" rel="noopener">Co-Creative Digital</a></p>
     </div>
   </footer>
+  <dialog class="vpop" aria-label="Video">
+    <button type="button" class="vpop__close" aria-label="Close video">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+    </button>
+    <div class="vpop__frame"></div>
+  </dialog>
+  <script is:inline>
+    (function () {
+      var d = document.querySelector('.vpop'), fr = d && d.querySelector('.vpop__frame'), last;
+      function shut() { if (!d.open) return; d.close(); }
+      if (d) {
+        d.addEventListener('close', function () { fr.innerHTML = ''; if (last) last.focus(); });
+        d.addEventListener('click', function (e) { if (e.target === d) shut(); });
+        d.querySelector('.vpop__close').addEventListener('click', shut);
+      }
+      document.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-popup-yt]'); if (!b || !d) return;
+        last = b;
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.popupYt + '?autoplay=1&rel=0';
+        f.title = b.dataset.popupTitle || 'Video'; f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
+        fr.innerHTML = ''; fr.appendChild(f); d.showModal();
+      });
+    })();
+  </script>
   <script is:inline>
     (function () {
       var t = document.querySelector('.hdr__toggle'), n = document.getElementById('nav');

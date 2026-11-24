@@ -31,7 +31,10 @@ const experts = [
     <div class="wrap">
       <h1>The Ultimate Business Club For Entrepreneurs With Big Dreams</h1>
       <p class="lede">Our business is an extension of who we are. By bringing wellness into our physical, mental, emotional and spiritual aspects of our lives, our businesses will thrive.</p>
-      <div class="btns"><a class="btn btn--pink" href="/library/">Browse the library</a><a class="btn btn--line" href="/film/">See the films</a></div>
+      <div class="btns">
+        <button type="button" class="btn btn--pink" data-popup-yt="BZ0eJLjVZ0w" data-popup-title="BizWell Studio trailer"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>Watch the trailer</button>
+        <a class="btn btn--line" href="/library/">Browse the library</a>
+      </div>
       <div class="collage">
         {hero.map((h, i) => <Image src={img(h)!} alt="" widths={[300, 600]} sizes="(max-width: 640px) 50vw, 280px" loading={i < 2 ? 'eager' : 'lazy'} />)}
       </div>
